@@ -1,0 +1,83 @@
+								About NginX
+------------------------------------------------------------------------
+1. Main two things : Context and Directive
+	- Context is like scope 
+	- Directive is key value pair saparated by space, which resides in context
+	- Outer scope is Main Context
+	- There are few useful contexts : for example, http, server, events
+	server{
+		listen				80;
+		server_name			mydomain.com;
+		access_log			/var/log/mydomain.con.access.log main;
+		root				html;
+		
+		location /some_path{
+			add_header header_name header_value;
+		}
+	}
+	
+2. Difference between restart and reload
+	- Reloading nginx is safer than restarting because before old process will be terminated, 
+	  new configuration file is parsed and whole process is aborted if there are any problems with it.
+
+	- On the other hand when you restart nginx you might encounter situation in which nginx will stop, 
+	  and won't start back again, because of syntax error.
+
+	- Reloading terminates the old process, so any memory leaks should be cleared anyway.
+	
+3. 	location context : path priority
+
+	a. Exact match 			: = URI
+	b. Preferential match 	: ^~ URI
+	c. Regex match 			: ~* URI
+	d. Prefix match 		: URI
+	
+4. Variable types : 
+	
+	a. Configuration Variables
+		set $var 'somthing';
+	b. NginX Module Variabes
+		$http, $uri, $args;
+
+5. rewrite VS return
+	> rewrite treats main request URL and Rewritten URL as completely new 
+	> return (Referred as redirect) with 3XX response code changes path in client	
+	
+6. 3 main directive types 
+	> Standard Directive	: e.g. root directive
+	> Array Directive		: e.g. access_log directive
+	> Action Directive		: e.g. return directive, rewrite directive, try_files directive
+	
+7. To get all the modules (3rd party along with nginx source code) 
+	> Go to nginx downloaded directory : For example, /home/rjiyani/nginx-1.21.3
+	> Execute command 		: ./configure --help
+	
+8. To get list of all dynamic modules :  ./configure --help | grep dynamic
+
+9. If you get an error while adding http_image_filter_module : dynamic module	: ./configure: error:   the HTTP image filter module requires the GD library.
+																										You can either do not enable the module or install the libraries.
+																										
+	Install two libs : 1) sudo apt-get install libxslt-dev
+					   2) sudo apt-get install libgd-dev
+
+10. How to add Dynamic module in NginX and compile + build : 
+
+./configure 
+--sbin-path=/usr/bin/nginx 
+--conf-path=/etc/nginx/nginx.conf 
+--error-log-path=/var/log/nginx/error.log 
+--http-log-path=/var/log/nginx/access.log 
+--with-pcre 
+--pid-path=/var/run/nginx.pid
+--with-http_ssl_module 
+--with-http_image_filter_module=dynamic 
+--modules-path=/etc/nginx/modules  
+
+*** Compile the Nginx Code with command > make
+
+*** Install compiled code in existing NginX instance > make install
+
+11. To verify the syntax of nginx.conf : Use command > nginx -t
+
+12. 
+

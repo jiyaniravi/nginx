@@ -1,0 +1,36 @@
+		Few useful commads : Linux : Ubuntu
+------------------------------------------------------------------------
+
+0. Update ubuntu packages 								> apt-get update
+
+1. If you are not able to login as su use 				> sudo su
+
+2. How to move files from Windows to WSL and viceversa 	> There should be users created at path C:\Users, for an example C:\Users\defaultuser100000
+
+3. Install unzip in ubuntu								> sudo apt-get install unzip
+
+4. Unzip using unzip command 							> unzip file_name.zip
+
+5. How to access WSL folders from windows?				> Give access to private network in windows explorer. hit > "\\wsl$"
+														> In Visual Studio Code IDE, install "Remote - WSL" plug-in
+														
+6. Give read write permission to all 					> chmod -R 0777 folder_name														
+
+7. Install Git in Ubuntu 20.04							> sudo apt install git
+
+8. Install php-fpm 										> apt-get install php-fpm [Default path : 7.4 version : /etc/php/7.4/]
+
+9. To get the number of cores of CPU in machine			> nproc
+
+10. To get more details/info about Machine				> lscpu
+
+11. Generate self-signed SSL certificate				> openssl req -x509 -days 10 -nodes -newkey rsa:2048 -keyout /etc/nginx/ssl/self.key -out /etc/nginx/ssl/self.crt
+
+12. To get the SSL certificate from any domain			> openssl s_client -showcerts -connect 192.168.87.90:443			# 192.168.87.90 is remote servers ip
+														  Refer : https://www.baeldung.com/linux/curl-https-connection
+
+13. PEM (.pem) full form								> Privacy Enhanced Mail (Used in SSL, TLS protocols)
+
+14. Generate dh (Diffie Hellman) params 				>  openssl dhparam 2048 -out /etc/nginx/ssl/dhparam.pem
+
+15. 

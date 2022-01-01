@@ -1,0 +1,87 @@
+		Installation and Base Setup for NginX : Linux : Ubuntu
+------------------------------------------------------------------------
+0. Install Ubuntu 20.04 LTS in Windows Subsystem For Linux  > sudo apt-get upgrade (To update OS libraries)
+
+1. Download nginx from using command 						> wget https://nginx.org/download/nginx-1.21.3.tar.gz
+				
+2. Extract the file with command 							> tar -zxvf nginx-1.21.3.tar.gz
+				
+3. Check extracted folder nginx-1.21.3 						> ls -l
+				
+4. Go in nginx folder and execute to configure src			> ./configure
+
+5. It will need C/C++ build library (Dev tools)				> sudo apt-get install build-essential  
+
+6. Confiigure source with									> ./configure
+
+7. Install regex library for nginx 3rd party dependencies	> sudo apt-get install libpcre3 libpcre3-dev
+
+8. Install zip & ssl lib for nginx 3rd party dependencies	> sudo apt-get install zlib1g zlib1g-dev libssl-dev
+
+6. Configure source with									> ./configure
+
+10.To get list of all commands/ settings for configurations	> ./configure --help
+
+11.To final configure with configuration paths				> ./configure --sbin-path=/usr/bin/nginx 
+																		  --conf-path=/etc/nginx/nginx.conf 
+																		  --error-log-path=/var/log/nginx/error.log 
+																		  --http-log-path=/var/log/nginx/access.log 
+																		  --with-pcre 
+																		  --pid-path=/var/run/nginx.pid 
+																		  --with-http_ssl_module
+																		  
+12.Compile configuration source								> make
+
+13.Install compiled source using command					> sudo make install
+
+14.Check required files created for nginx 					> ls -l /etc/nginx/
+
+15.Check nginx version with configuration options			> nginx -V
+
+16.Start nginx with command 								> sudo nginx
+
+17.Check the process started correctly						> ps aux | grep nginx
+
+18.To install ifconfig in ubuntu							> sudo apt install net-tools
+
+19.How to configure nginx as a service (systemd service)	: Minimum Ubuntu 15.04 and For Cent OS : 7.0
+
+20.Stop nginx service										> nginx -s stop
+   Reload nginx service										> nginx -s reload
+   
+21.Open web page 											: https://www.nginx.com/resources/wiki/start/topics/examples/systemd/
+
+22.Enable nginx startup on boot								> sudo systemctl enable nginx
+
+23.To check if nginx.conf file syntax is valid 				> nginx -t
+
+24.Nice plug-ins for Visual Studio Code IDE					> nginx-formatter, nginx-conf-hint
+
+25. CGI														> Common Gateway Interface
+
+26. FastCGI													> Protocol to transfer binary data 
+
+27. If /run/php/php7.4-fpm.sock is not created 				> create 'php' directory inside run directory using mkdir
+
+28. FPM  : FastCGI Process Manager
+
+29. Start php-fpm7.4 service								> sudo service php7.4-fpm start
+30. Stop php-fpm7.4 service									> sudo service php7.4-fpm stop
+31. Restart php-fpm7.4 service								> sudo service php7.4-fpm restart
+32. Reload php-fpm7.4 service								> sudo service php7.4-fpm reload
+
+33. Apache bench : Tool to bench mark HTTP request-response
+
+	To install the same 									> apt-get install apache2-utils
+	To Benchmark any URL									> ab -n 100 -c 10 http://192.168.87.90/				#This will create 100 request in batch of 10 concurrent requests
+	
+34. To install nghttp2 client								> apt-get install nghttp2-client	
+
+35. To install Joe Dog : Siege software (Load testing + Bench marking)
+															> apt-get install siege
+36.	Use Seige tool : Hit 5 concurrent requests twice 		> siege -v -r 2 -c 5 https://192.168.85.29/thumb.png														
+
+37. How to generate http password for basic auth using apache bench tool 
+															> htpasswd -c /etc/nginx/.htpasswd user1															
+
+38. 
